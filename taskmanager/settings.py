@@ -10,7 +10,7 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'your-secret-key-here'  # Replace with a real secret in production!
+SECRET_KEY = 'some-long-secret'  # Replace with a real secret in production!
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
