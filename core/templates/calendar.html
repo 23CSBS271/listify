@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+{% block content %}
+<div class="container mx-auto px-4 py-8 text-white">
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-3xl font-bold text-white">{{ month_name }} {{ year }}</h2>
+    <div class="space-x-4">
+      <a href="?month={{ month|add:"-1" }}&year={{ year }}" class="bg-gray-800 hover:bg-gray-700 text-white px-3 py-1 rounded">
+        ← Previous
+      </a>
+      <a href="?month={{ month|add:"1" }}&year={{ year }}" class="bg-gray-800 hover:bg-gray-700 text-white px-3 py-1 rounded">
+        Next →
+      </a>
+    </div>
+  </div>
+
+  <!-- Day headers -->
+  <div class="grid grid-cols-7 gap-2 text-center font-semibold text-sm border-b border-gray-700 pb-2 mb-2">
+    <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+  </div>
+
+  <!-- Calendar grid -->
+  <div class="grid grid-cols-7 gap-2">
+    {% for week in month_days %}
+      {% for day in week %}
+        <div class="min-h-[120px] flex flex-col border rounded-lg p-2 
+          {% if day.month != month %} bg-gray-800 text-gray-500 {% else %} bg-gray-900 {% endif %}
+          {% if day == today %} border-blue-500 {% endif %}
+        ">
+          <div class="text-xs font-bold mb-1">
+            {{ day.day }}
+          </div>
+
+          <!-- Tasks -->
+          <div class="overflow-y-auto max-h-[90px] space-y-1">
+            {% with tasks=task_map|get_item:day %}
+              {% for task in tasks %}
+                <div class="text-xs truncate px-1 py-0.5 rounded
+                  {% if task.is_overdue %} bg-red-500 text-white
+                  {% elif task.completed %} bg-gray-600 text-gray-200 line-through
+                  {% else %} bg-green-600 text-white
+                  {% endif %}
+                ">
+                  {{ task.title }}
+                </div>
+              {% endfor %}
+            {% endwith %}
+          </div>
+        </div>
+      {% endfor %}
+    {% endfor %}
+  </div>
+
+  <!-- Legend -->
+  <div class="mt-6 text-sm flex items-center space-x-4">
+    <span><strong>Key:</strong></span>
+    <span class="bg-green-600 px-2 py-1 rounded text-white">Upcoming</span>
+    <span class="bg-red-500 px-2 py-1 rounded text-white">Overdue</span>
+    <span class="bg-gray-600 px-2 py-1 rounded text-white line-through">Completed</span>
+    <span class="border border-blue-500 px-2 py-1 rounded text-blue-300">Today</span>
+  </div>
+</div>
+{% endblock %}

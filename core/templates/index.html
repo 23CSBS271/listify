@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to Listify{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <!-- Hero Section -->
+        <div class="text-center mb-5">
+            <div class="mb-4">
+                <i class="bi bi-check-circle-fill display-1 text-primary"></i>
+            </div>
+            <h1 class="display-4 fw-bold mb-3">Welcome to Listify</h1>
+            <p class="lead mb-4">Your personal task management solution to organize, prioritize, and accomplish your goals efficiently.</p>
+            
+            {% if not user.is_authenticated %}
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <a href="{% url 'register' %}" class="btn btn-primary btn-lg me-md-2">
+                    <i class="bi bi-person-plus me-2"></i>Get Started
+                </a>
+                <a href="{% url 'login' %}" class="btn btn-outline-secondary btn-lg">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+                </a>
+            </div>
+            {% else %}
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg me-md-2">
+                    <i class="bi bi-speedometer2 me-2"></i>Go to Dashboard
+                </a>
+                <a href="{% url 'add_task' %}" class="btn btn-outline-secondary btn-lg">
+                    <i class="bi bi-plus-circle me-2"></i>Add New Task
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Features Section -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-6">
+                <div class="card h-100 border-0 bg-dark">
+                    <div class="card-body text-center">
+                        <i class="bi bi-list-check display-4 text-primary mb-3"></i>
+                        <h5 class="card-title">Task Management</h5>
+                        <p class="card-text">Create, edit, delete, and organize your tasks with ease. Mark tasks as completed and track your progress.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-0 bg-dark">
+                    <div class="card-body text-center">
+                        <i class="bi bi-tags display-4 text-success mb-3"></i>
+                        <h5 class="card-title">Categories</h5>
+                        <p class="card-text">Organize tasks into customizable categories like Work, Personal, Shopping, and more.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-0 bg-dark">
+                    <div class="card-body text-center">
+                        <i class="bi bi-calendar-event display-4 text-warning mb-3"></i>
+                        <h5 class="card-title">Deadline Reminders</h5>
+                        <p class="card-text">Set deadlines for your tasks and receive timely reminders to stay on track.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-0 bg-dark">
+                    <div class="card-body text-center">
+                        <i class="bi bi-funnel display-4 text-info mb-3"></i>
+                        <h5 class="card-title">Smart Filtering</h5>
+                        <p class="card-text">Filter tasks by completion status, category, priority, and search through your tasks quickly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        {% if not user.is_authenticated %}
+        <div class="card border-primary">
+            <div class="card-body text-center">
+                <h5 class="card-title">Ready to get organized?</h5>
+                <p class="card-text">Join thousands of users who have improved their productivity with Listify.</p>
+                <a href="{% url 'register' %}" class="btn btn-primary">
+                    <i class="bi bi-rocket-takeoff me-2"></i>Start Your Journey
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
