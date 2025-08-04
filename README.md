@@ -2,9 +2,6 @@
 
 Listify is a minimal, functional task management app built with Django. It allows users to create, organize, and manage their tasks by category, priority, and status, with optional email and WhatsApp reminders for overdue tasks.
 
-## 🔗 Live Demo (optional)
-
-> 🟢 Coming soon: [Demo Link Here](https://listify.onrender.com)  
 > 💻 Source Code: [GitHub Repo](https://github.com/23CSBS271/listify)
 
 ---
