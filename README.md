@@ -4,7 +4,7 @@ Listify is a minimal, functional task management app built with Django. It allow
 
 ## 🔗 Live Demo (optional)
 
-> 🟢 Coming soon: [Demo Link Here](https://your-app-name.onrender.com)  
+> 🟢 Coming soon: [Demo Link Here](https://listify.onrender.com)  
 > 💻 Source Code: [GitHub Repo](https://github.com/23CSBS271/listify)
 
 ---
